@@ -1,5 +1,6 @@
 import requests
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt 
+from matplotlib.pyplot import figure
 import pandas as pd
 import json
 import tkinter as tk
@@ -60,10 +61,15 @@ new_death1 =    [getdata.json()[-7]['new_death'], getdata.json()[-6]['new_death'
                 getdata.json()[-4]['new_death'], getdata.json()[-3]['new_death'], getdata.json()[-2]['new_death'], \
                 getdata.json()[-1]['new_death']]
 
+total_case1 = [getdata.json()[-1]['total_case'], getdata.json()[-1]['total_death'], getdata.json()[-1]['total_recovered']]
+
+name_case1 = ['ผู้ติดเชื้อทั้งหมด', 'ผู้เสียชีวิตทั้งหมด', 'ผู้ที่ได้รับการรักษาทั้งหมด']
+
 def createNewWindow():
     newWindow = tk.Toplevel(app)
     lbl = tk.Label(newWindow,text= "ผู้ป่วยติดเชื้อใหม่ "+ str(newcase)).pack()
     newWindow.geometry("500x500")
+    figure(figsize=(12, 8), dpi=70)
     plt.plot(timeline_5_day, newcase1, 'go-')
     plt.xlabel('Time (Year, Month)')
     plt.ylabel('Number of Cases')
@@ -73,9 +79,9 @@ def createNewWindow():
 
 def createNewWindow_new_death():
     newWindow = tk.Toplevel(app)
-    lbl = tk.Label(newWindow,text= "จำนวนผู้เสียชีวิตรายวัน "+ str(new_recovered)).pack()
+    lbl = tk.Label(newWindow,text= "จำนวนผู้เสียชีวิต "+ str(new_recovered)).pack()
     newWindow.geometry("500x500")
-    plt.bar(timeline_5_day, new_death1)
+    plt.plot(timeline_5_day, new_death1, 'bo-')
     plt.xlabel('Time (Year, Month)')
     plt.ylabel('Number of Cases')
     plt.title('Number of Reported Cases Each Month')
@@ -84,7 +90,7 @@ def createNewWindow_new_death():
     
 def createNewWindow_new_recovered():
     newWindow = tk.Toplevel(app)
-    lbl = tk.Label(newWindow,text= "จำนวนผู้เสียชีวิตรายวัน "+ str(new_death)).pack()
+    lbl = tk.Label(newWindow,text= "จำนวนผู้ได้รับการรักษาใหม่ "+ str(new_death)).pack()
     newWindow.geometry("500x500")
     plt.plot(timeline_5_day, new_recovered1, 'ro-')
     plt.xlabel('Time (Year, Month)')
@@ -93,7 +99,14 @@ def createNewWindow_new_recovered():
     plt.legend(['New death'])
     plt.show()
     
-    
+def createNewWindow_total():
+    newWindow = tk.Toplevel(app)
+    plt.bar(name_case1, total_case1)
+    plt.xlabel('Time (Year, Month)')
+    plt.ylabel('Number of Cases')
+    plt.title('Number of Reported Cases Each Month')
+    plt.legend(['New death'])
+    plt.show()
 
 app = tk.Tk()
 app.title('Report Covid-19')
@@ -117,6 +130,9 @@ buttonExample = tk.Button(app,
 buttonExample = tk.Button(app, 
               text="ผู้ได้รับการรักษาใหม่",
               command=createNewWindow_new_recovered).pack()
+buttonExample = tk.Button(app, 
+              text="ผู้ได้รับการรักษาใหม่",
+              command=createNewWindow_total).pack()
 
 app.geometry("500x500")
 app.mainloop()
