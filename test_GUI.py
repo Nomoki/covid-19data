@@ -45,7 +45,7 @@ def createNewWindow():
     plt.plot(timeline_5_day, new_recovered1, 'go-')
     plt.xlabel('Time (Year, Month)')
     plt.ylabel('Number of Cases')
-    plt.title('Number of Reported Cases Each Day')
+    plt.title('Number of New Case and New recovered Cases Each Day')
     plt.legend(['New case', 'New recovered'])
     plt.show()
 
@@ -60,7 +60,7 @@ def createNewWindow_new_death():
     plt.plot(timeline_5_day, new_death1, 'ro-')
     plt.xlabel('Time (Year, Month)')
     plt.ylabel('Number of Cases')
-    plt.title('Number of Reported Cases Each Day')
+    plt.title('Number of New Death Cases Each Day')
     plt.legend(['New death'])
     plt.show()
 
@@ -69,7 +69,7 @@ def createNewWindow_new_recovered():
     plt.plot(timeline_5_day, new_recovered1, 'go-')
     plt.xlabel('Time (Year, Month)')
     plt.ylabel('Number of Cases')
-    plt.title('Number of Reported Cases Each Day')
+    plt.title('Number of New Recovered Cases Each Day')
     plt.legend(['New death'])
     plt.show()
 
