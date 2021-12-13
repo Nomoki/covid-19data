@@ -1,6 +1,5 @@
 import requests
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 import json
 import tkinter as tk
@@ -74,8 +73,7 @@ new_death1 = [getdata.json()[-5]['new_death'], getdata.json()[-4]['new_death'],
 
 def createNewWindow_new_death():
     newWindow = tk.Toplevel(app)
-    lbl = tk.Label(newWindow, text="จำนวนผู้เสียชีวิต " +
-                   str(new_death)).pack()
+    lbl = tk.Label(newWindow, text="จำนวนผู้เสียชีวิต " + str(new_death)).pack()
     newWindow.geometry("500x500")
     plt.bar(timeline_5_day, new_death1)
     plt.xlabel('Time (Year, Month)')
@@ -84,6 +82,16 @@ def createNewWindow_new_death():
     plt.legend(['New death'])
     plt.show()
 
+def createNewWindow_new_recovered():
+    newWindow = tk.Toplevel(app)
+    lbl = tk.Label(newWindow,text= "จำนวนผู้เสียชีวิตรายวัน "+ str(new_death)).pack()
+    newWindow.geometry("500x500")
+    plt.plot(timeline_5_day, new_recovered1, 'ro-')
+    plt.xlabel('Time (Year, Month)')
+    plt.ylabel('Number of Cases')
+    plt.title('Number of Reported Cases Each Month')
+    plt.legend(['New death'])
+    plt.show()
 
 app = tk.Tk()
 app.title('Report Covid-19')
@@ -147,12 +155,15 @@ label8 = tk.Label(frame6, text="\nผู้ได้รับการรัก�
 label8.pack(side='top')
 
 frame7 = tk.Frame(app, bg='#22732B')
-frame7.place(relx=0.5, rely=0.9, relwidth=0.15, relheight=0.05,anchor='n')
+frame7.place(relx=0.5, rely=0.9, relwidth=0.5, relheight=0.05,anchor='n')
 
-buttonG = tk.Button(frame7, text="ดูกราฟ", command=createNewWindow)
+buttonG = tk.Button(frame7, text="กราฟผู้ติดเชื้อรายใหม่", command=createNewWindow)
 buttonG.pack(side='left', fill='both', expand=True)
 
-buttonD = tk.Button(frame7, text="ยอดผู้เสียชีวิต", command=createNewWindow_new_death)
+buttonD = tk.Button(frame7, text="กราฟผู้เสียชีวิตรายวัน", command=createNewWindow_new_death)
 buttonD.pack(side='left', fill='both', expand=True)
+
+buttonR = tk.Button(frame7, text="กราฟผู้ได้รับการรักษาใหม่",command=createNewWindow_new_recovered)
+buttonR.pack(side='left', fill='both', expand=True)
 
 app.mainloop()
