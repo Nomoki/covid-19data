@@ -1,25 +1,11 @@
 import requests
 import matplotlib.pyplot as plt
+from matplotlib.pyplot import figure, title
 import pandas as pd
 import json
 import tkinter as tk
 from tkinter import *
 from PIL import ImageTk, Image
-
-def get_covid19_report(url):
-    response = requests.get(url)
-    data = response.json()
-    with open('data.json', 'w') as f:
-        json.dump(data, f)
-    return data
-
-
-url = 'https://covid19.ddc.moph.go.th/api/Cases/timeline-cases-all'
-get_covid19_report(url)
-
-with open('data.json') as f:
-    raw = json.load(f)
-    df = pd.read_json('data.json')
 
 
 response = requests.get(
@@ -54,15 +40,12 @@ new_recovered1 = [getdata.json()[-5]['new_recovered'], getdata.json()[-4]['new_r
 
 
 def createNewWindow():
-    newWindow = tk.Toplevel(app)
-    lbl = tk.Label(newWindow, text="ผู้ป่วยติดเชื้อใหม่ " +
-                str(newcase)).pack()
-    newWindow.geometry("500x500")
-    plt.plot(timeline_5_day, newcase1, 'go-')
-    plt.plot(timeline_5_day, new_recovered1, 'ro-')
+    figure(figsize=(12, 8), dpi=70, label='New Case & New recovered')
+    plt.plot(timeline_5_day, newcase1, 'bo-')
+    plt.plot(timeline_5_day, new_recovered1, 'go-')
     plt.xlabel('Time (Year, Month)')
     plt.ylabel('Number of Cases')
-    plt.title('Number of Reported Cases Each Month')
+    plt.title('Number of Reported Cases Each Day')
     plt.legend(['New case', 'New recovered'])
     plt.show()
 
@@ -72,24 +55,21 @@ new_death1 = [getdata.json()[-5]['new_death'], getdata.json()[-4]['new_death'],
 
 
 def createNewWindow_new_death():
-    newWindow = tk.Toplevel(app)
-    lbl = tk.Label(newWindow, text="จำนวนผู้เสียชีวิต " + str(new_death)).pack()
-    newWindow.geometry("500x500")
-    plt.bar(timeline_5_day, new_death1)
+    figure(figsize=(12, 8), dpi=70, label='New Death')
+    
+    plt.plot(timeline_5_day, new_death1, 'ro-')
     plt.xlabel('Time (Year, Month)')
     plt.ylabel('Number of Cases')
-    plt.title('Number of Reported Cases Each Month')
+    plt.title('Number of Reported Cases Each Day')
     plt.legend(['New death'])
     plt.show()
 
 def createNewWindow_new_recovered():
-    newWindow = tk.Toplevel(app)
-    lbl = tk.Label(newWindow,text= "จำนวนผู้เสียชีวิตรายวัน "+ str(new_death)).pack()
-    newWindow.geometry("500x500")
-    plt.plot(timeline_5_day, new_recovered1, 'ro-')
+    figure(figsize=(12, 8), dpi=70,label='New Recovered')
+    plt.plot(timeline_5_day, new_recovered1, 'go-')
     plt.xlabel('Time (Year, Month)')
     plt.ylabel('Number of Cases')
-    plt.title('Number of Reported Cases Each Month')
+    plt.title('Number of Reported Cases Each Day')
     plt.legend(['New death'])
     plt.show()
 
