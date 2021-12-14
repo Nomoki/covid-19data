@@ -31,11 +31,11 @@ df.info()
 pd.DataFrame(df)
 
 # ดึงเคสล่าสุด 5 เคสจาก json url(getdata) มาใส่ตัวแปร
-timeline_5_day = [getdata.json()[-5]['txn_date'], getdata.json()[-4]['txn_date'],
+timeline_5_day = [getdata.json()[-7]['txn_date'], getdata.json()[-6]['txn_date'], getdata.json()[-5]['txn_date'], getdata.json()[-4]['txn_date'],
                 getdata.json()[-3]['txn_date'], getdata.json()[-2]['txn_date'], getdata.json()[-1]['txn_date']]
-newcase1 = [getdata.json()[-5]['new_case'], getdata.json()[-4]['new_case'],
+newcase1 = [getdata.json()[-7]['new_case'], getdata.json()[-6]['new_case'], getdata.json()[-5]['new_case'], getdata.json()[-4]['new_case'],
             getdata.json()[-3]['new_case'], getdata.json()[-2]['new_case'], getdata.json()[-1]['new_case']]
-new_recovered1 = [getdata.json()[-5]['new_recovered'], getdata.json()[-4]['new_recovered'],
+new_recovered1 = [getdata.json()[-7]['new_recovered'], getdata.json()[-6]['new_recovered'], getdata.json()[-5]['new_recovered'], getdata.json()[-4]['new_recovered'],
                 getdata.json()[-3]['new_recovered'], getdata.json()[-2]['new_recovered'], getdata.json()[-1]['new_recovered']]
 
 
@@ -50,7 +50,7 @@ def createNewWindow():
     plt.show()
 
 
-new_death1 = [getdata.json()[-5]['new_death'], getdata.json()[-4]['new_death'],
+new_death1 = [getdata.json()[-7]['new_death'], getdata.json()[-6]['new_death'], getdata.json()[-5]['new_death'], getdata.json()[-4]['new_death'],
               getdata.json()[-3]['new_death'], getdata.json()[-2]['new_death'], getdata.json()[-1]['new_death']]
 
 
