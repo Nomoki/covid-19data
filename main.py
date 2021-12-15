@@ -30,19 +30,19 @@ df = pd.read_json(
 df.info()
 pd.DataFrame(df)
 
-# ดึงเคสล่าสุด 5 เคสจาก json url(getdata) มาใส่ตัวแปร
-timeline_5_day = [getdata.json()[-7]['txn_date'], getdata.json()[-6]['txn_date'], getdata.json()[-5]['txn_date'], getdata.json()[-4]['txn_date'],
+# ดึงเคสล่าสุด 7 เคสจาก json url(getdata) มาใส่ตัวแปร
+timeline_7_day = [getdata.json()[-7]['txn_date'], getdata.json()[-6]['txn_date'], getdata.json()[-5]['txn_date'], getdata.json()[-4]['txn_date'],
                 getdata.json()[-3]['txn_date'], getdata.json()[-2]['txn_date'], getdata.json()[-1]['txn_date']]
-newcase1 = [getdata.json()[-7]['new_case'], getdata.json()[-6]['new_case'], getdata.json()[-5]['new_case'], getdata.json()[-4]['new_case'],
+newcase_7_day = [getdata.json()[-7]['new_case'], getdata.json()[-6]['new_case'], getdata.json()[-5]['new_case'], getdata.json()[-4]['new_case'],
             getdata.json()[-3]['new_case'], getdata.json()[-2]['new_case'], getdata.json()[-1]['new_case']]
-new_recovered1 = [getdata.json()[-7]['new_recovered'], getdata.json()[-6]['new_recovered'], getdata.json()[-5]['new_recovered'], getdata.json()[-4]['new_recovered'],
+new_recovered_7_day = [getdata.json()[-7]['new_recovered'], getdata.json()[-6]['new_recovered'], getdata.json()[-5]['new_recovered'], getdata.json()[-4]['new_recovered'],
                 getdata.json()[-3]['new_recovered'], getdata.json()[-2]['new_recovered'], getdata.json()[-1]['new_recovered']]
 
 
 def createNewWindow():
     figure(figsize=(12, 8), dpi=70, label='New Case & New recovered')
-    plt.plot(timeline_5_day, newcase1, 'bo-')
-    plt.plot(timeline_5_day, new_recovered1, 'go-')
+    plt.plot(timeline_7_day, newcase_7_day, 'bo-')
+    plt.plot(timeline_7_day, new_recovered_7_day, 'go-')
     plt.xlabel('Time (Year, Month, Day)')
     plt.ylabel('Number of Cases')
     plt.title('Number of New Case and New recovered Cases Each Day')
@@ -50,14 +50,13 @@ def createNewWindow():
     plt.show()
 
 
-new_death1 = [getdata.json()[-7]['new_death'], getdata.json()[-6]['new_death'], getdata.json()[-5]['new_death'], getdata.json()[-4]['new_death'],
+new_death_7_day = [getdata.json()[-7]['new_death'], getdata.json()[-6]['new_death'], getdata.json()[-5]['new_death'], getdata.json()[-4]['new_death'],
               getdata.json()[-3]['new_death'], getdata.json()[-2]['new_death'], getdata.json()[-1]['new_death']]
 
 
 def createNewWindow_new_death():
     figure(figsize=(12, 8), dpi=70, label='New Death')
-    
-    plt.plot(timeline_5_day, new_death1, 'ro-')
+    plt.plot(timeline_7_day, new_death_7_day, 'ro-')
     plt.xlabel('Time (Year, Month, Day)')
     plt.ylabel('Number of Cases')
     plt.title('Number of New Death Cases Each Day')
@@ -66,7 +65,7 @@ def createNewWindow_new_death():
 
 def createNewWindow_new_recovered():
     figure(figsize=(12, 8), dpi=70,label='New Recovered')
-    plt.plot(timeline_5_day, new_recovered1, 'go-')
+    plt.plot(timeline_7_day, new_recovered_7_day, 'go-')
     plt.xlabel('Time (Year, Month, Day)')
     plt.ylabel('Number of Cases')
     plt.title('Number of New Recovered Cases Each Day')
