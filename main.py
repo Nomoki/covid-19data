@@ -30,7 +30,7 @@ df = pd.read_json(
 df.info()
 pd.DataFrame(df)
 
-# ดึงเคสล่าสุด 7 เคสจาก json url(getdata) มาใส่ตัวแปร
+# ดึงเคส 7 เคสย้อนหลังจาก json url(getdata) มาใส่ตัวแปร
 timeline_7_day = [getdata.json()[-7]['txn_date'], getdata.json()[-6]['txn_date'], getdata.json()[-5]['txn_date'], getdata.json()[-4]['txn_date'],
                 getdata.json()[-3]['txn_date'], getdata.json()[-2]['txn_date'], getdata.json()[-1]['txn_date']]
 newcase_7_day = [getdata.json()[-7]['new_case'], getdata.json()[-6]['new_case'], getdata.json()[-5]['new_case'], getdata.json()[-4]['new_case'],
